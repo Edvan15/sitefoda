@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Salva</title>
+    <link rel="stylesheet" href="css/styles_ficha_salva.css">
+</head>
+<body>
+    <header>
+        <h1>Ficha Salva</h1>
+    </header>
+    <main>
+        <div id="characterInfo">
+            <!-- Aqui serão exibidas as informações do personagem -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Edvan</p>
+        <a href="index.html" class="back-arrow"><i class="fas fa-arrow-left"></i> Voltar</a>
+    </footer>
+    <script>
+        // Recupera o personagem salvo do localStorage
+        const savedCharacter = JSON.parse(localStorage.getItem('character'));
+
+        // Verifica se há um personagem salvo para exibir
+        if (savedCharacter) {
+            const characterInfo = document.getElementById('characterInfo');
+
+            // Monta o HTML para exibir as informações do personagem
+            const html = `
+                <div class="character-card">
+                    <h2>${savedCharacter.name}</h2>
+                    <p><strong>Classe:</strong> ${savedCharacter.class}</p>
+                    <p><strong>Raça:</strong> ${savedCharacter.race}</p>
+                    <p><strong>Nível:</strong> ${savedCharacter.level}</p>
+                    <h3>Atributos</h3>
+                    <ul>
+                        <li><strong>Força:</strong> ${savedCharacter.attributes.strength}</li>
+                        <li><strong>Destreza:</strong> ${savedCharacter.attributes.dexterity}</li>
+                        <li><strong>Constituição:</strong> ${savedCharacter.attributes.constitution}</li>
+                        <li><strong>Inteligência:</strong> ${savedCharacter.attributes.intelligence}</li>
+                        <li><strong>Sabedoria:</strong> ${savedCharacter.attributes.wisdom}</li>
+                        <li><strong>Carisma:</strong> ${savedCharacter.attributes.charisma}</li>
+                    </ul>
+                    <p><strong>Pontos de Vida:</strong> ${savedCharacter.hp}</p>
+                    <p><strong>Classe de Armadura:</strong> ${savedCharacter.ac}</p>
+                </div>
+            `;
+
+            characterInfo.innerHTML = html;
+        } else {
+            // Se não houver personagem salvo, exibe mensagem de erro ou redireciona para a página principal
+            alert('Nenhuma ficha salva encontrada.');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

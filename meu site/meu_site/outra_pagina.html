@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolar Dados de RPG</title>
+    <link rel="stylesheet" href="css/styles_outra_pagina.css">
+    <script defer src="js/scripts_outra_pagina.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Rolar Dados de RPG</h1>
+        <a href="index.html" class="back-button">&larr; Voltar</a>
+    </header>
+    <main>
+        <section>
+            <label for="dadosEntrada">Dados (Ex: 2d6 + 5d8 + 7):</label>
+            <input type="text" id="dadosEntrada" placeholder="2d6 + 5d8 + 7">
+            <button id="rollButton">Rolar Dados</button>
+            <div id="resultado"></div>
+            <div id="historico">
+                <h2>Histórico de Rolagens</h2>
+                <ul id="historico-lista"></ul>
+            </div>
+        </section>
+
+        <section id="fichaSection" style="display: none;">
+            <h2>Ficha de Personagem</h2>
+            <div id="fichaOutput"></div>
+        </section>
+
+        <!-- Botão para consultar ficha -->
+        <button id="consultarFicha">Consultar Ficha</button>
+    </main>
+</body>
+</html>

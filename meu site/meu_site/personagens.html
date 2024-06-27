@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Personagem</title>
+    <link rel="stylesheet" href="css/styles_personagens.css">
+</head>
+<body>
+    <header>
+        <h1>Ficha de Personagem</h1>
+    </header>
+    <main>
+        <form id="characterSheet">
+            <fieldset>
+                <legend>Informações do Personagem</legend>
+                <div class="form-group">
+                    <label for="characterName">Nome:</label>
+                    <input type="text" id="characterName" name="characterName">
+                </div>
+
+                <div class="form-group">
+                    <label for="characterClass">Classe:</label>
+                    <input type="text" id="characterClass" name="characterClass">
+                </div>
+
+                <div class="form-group">
+                    <label for="characterRace">Raça:</label>
+                    <input type="text" id="characterRace" name="characterRace">
+                </div>
+
+                <div class="form-group">
+                    <label for="characterLevel">Nível:</label>
+                    <input type="number" id="characterLevel" name="characterLevel" min="1">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Atributos</legend>
+                <div class="attributes">
+                    <div class="form-group">
+                        <label for="strength">Força:</label>
+                        <input type="number" id="strength" name="strength" min="1" max="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dexterity">Destreza:</label>
+                        <input type="number" id="dexterity" name="dexterity" min="1" max="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="constitution">Constituição:</label>
+                        <input type="number" id="constitution" name="constitution" min="1" max="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="intelligence">Inteligência:</label>
+                        <input type="number" id="intelligence" name="intelligence" min="1" max="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wisdom">Sabedoria:</label>
+                        <input type="number" id="wisdom" name="wisdom" min="1" max="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="charisma">Carisma:</label>
+                        <input type="number" id="charisma" name="charisma" min="1" max="20">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Outros</legend>
+                <div class="form-group">
+                    <label for="hp">Pontos de Vida:</label>
+                    <input type="number" id="hp" name="hp" min="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="ac">Classe de Armadura:</label>
+                    <input type="number" id="ac" name="ac" min="1">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Anotações, Itens e História</legend>
+                <textarea id="notes" name="notes" rows="6" placeholder="Anotações, itens e história do personagem..."></textarea>
+            </fieldset>
+
+            <a href="index.html" class="back-arrow"><i class="fas fa-arrow-left"></i> Voltar para Home</a>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Edvan</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar dados salvos do localStorage
+            const savedCharacter = JSON.parse(localStorage.getItem('character'));
+            if (savedCharacter) {
+                document.getElementById('characterName').value = savedCharacter.name || '';
+                document.getElementById('characterClass').value = savedCharacter.class || '';
+                document.getElementById('characterRace').value = savedCharacter.race || '';
+                document.getElementById('characterLevel').value = savedCharacter.level || '';
+                document.getElementById('strength').value = savedCharacter.attributes.strength || '';
+                document.getElementById('dexterity').value = savedCharacter.attributes.dexterity || '';
+                document.getElementById('constitution').value = savedCharacter.attributes.constitution || '';
+                document.getElementById('intelligence').value = savedCharacter.attributes.intelligence || '';
+                document.getElementById('wisdom').value = savedCharacter.attributes.wisdom || '';
+                document.getElementById('charisma').value = savedCharacter.attributes.charisma || '';
+                document.getElementById('hp').value = savedCharacter.hp || '';
+                document.getElementById('ac').value = savedCharacter.ac || '';
+                document.getElementById('notes').value = savedCharacter.notes || '';
+            }
+
+            // Salvar dados sempre que houver alteração nos campos
+            document.getElementById('characterSheet').addEventListener('input', function() {
+                const form = this;
+                const character = {
+                    name: form.characterName.value,
+                    class: form.characterClass.value,
+                    race: form.characterRace.value,
+                    level: form.characterLevel.value,
+                    attributes: {
+                        strength: form.strength.value,
+                        dexterity: form.dexterity.value,
+                        constitution: form.constitution.value,
+                        intelligence: form.intelligence.value,
+                        wisdom: form.wisdom.value,
+                        charisma: form.charisma.value,
+                    },
+                    hp: form.hp.value,
+                    ac: form.ac.value,
+                    notes: form.notes.value
+                };
+
+                localStorage.setItem('character', JSON.stringify(character));
+            });
+        });
+    </script>
+</body>
+</html>
